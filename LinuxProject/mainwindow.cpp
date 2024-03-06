@@ -12,3 +12,9 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+void MainWindow::on_pushButtonClose_clicked()
+{
+    std::system("shutdown now");
+}
+
