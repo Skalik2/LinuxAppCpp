@@ -30,7 +30,7 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:reflect, x1:0.489, y1:0, x2:1, y2:0, stop:0 rgba(128, 102, 255, 255), stop:0.41784 rgba(61, 67, 235, 255), stop:1 rgba(0, 0, 0, 255));</string>
+       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(137, 152, 120, 255), stop:1 rgba(34, 39, 37, 255));</string>
       </property>
       <property name="currentIndex">
        <number>0</number>
@@ -41,6 +41,17 @@
          <layout class="QVBoxLayout" name="verticalLayout">
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_2">
+            <item>
+             <widget class="QLabel" name="labelUserName">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+background-color: none;</string>
+              </property>
+              <property name="text">
+               <string>TextLabel</string>
+              </property>
+             </widget>
+            </item>
             <item>
              <spacer name="horizontalSpacer">
               <property name="orientation">

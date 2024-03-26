@@ -1,11 +1,21 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "misc.h"
+
+#include <cstdio>
+#include <iostream>
+#include <memory>
+#include <stdexcept>
+#include <string>
+#include <array>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    // QString result = getConsoleOutput("whoami");
+    // ui->labelUserName->setText(result);
 }
 
 MainWindow::~MainWindow()
@@ -41,4 +51,5 @@ void MainWindow::on_pushButtonSubmit_clicked()
         ui->labelInfo->setText("No match: "+num);
     }
 }
+
 
