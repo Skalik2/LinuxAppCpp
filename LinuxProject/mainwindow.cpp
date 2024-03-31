@@ -2,13 +2,6 @@
 #include "ui_mainwindow.h"
 #include "misc.h"
 
-#include <cstdio>
-#include <iostream>
-#include <memory>
-#include <stdexcept>
-#include <string>
-#include <array>
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -16,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     // QString result = getConsoleOutput("whoami");
     // ui->labelUserName->setText(result);
+
 }
 
 MainWindow::~MainWindow()
@@ -28,14 +22,12 @@ void MainWindow::on_pushButtonClose_clicked()
     std::system("shutdown now");
 }
 
-
 void MainWindow::on_pushButtonClear_clicked()
 {
     ui->lineEditLogin->clear();
     ui->lineEditPassword->clear();
     ui->labelInfo->clear();
 }
-
 
 void MainWindow::on_pushButtonSubmit_clicked()
 {
