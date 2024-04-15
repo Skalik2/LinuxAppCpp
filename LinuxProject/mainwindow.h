@@ -2,7 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <Qevent>
 #include <QCloseEvent>
 
 QT_BEGIN_NAMESPACE
@@ -18,7 +17,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    void closeEvent(QCloseEvent *event) override;
 private slots:
     void on_pushButtonClose_clicked();
 
@@ -28,5 +27,6 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
 };
 #endif // MAINWINDOW_H

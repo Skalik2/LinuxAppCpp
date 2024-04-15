@@ -44,4 +44,7 @@ void MainWindow::on_pushButtonSubmit_clicked()
     }
 }
 
+void MainWindow::closeEvent(QCloseEvent *event){
+    event->ignore();
+}
 
