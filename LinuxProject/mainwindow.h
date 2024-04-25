@@ -25,20 +25,22 @@ public:
 private slots:
     void on_pushButtonClose_clicked();
 
-    void on_pushButtonClear_clicked();
-
-    void on_pushButtonSubmit_clicked();
-
     void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
 
     void on_pushButton1_clicked();
     void on_pushButton2_clicked();
     void on_listWidget_itemClicked(QListWidgetItem *item);
     void on_pushButton3_clicked();
     void on_pushButton4_2_clicked();
-    void on_pushButton_4_clicked();
     void on_pushButtonCancel_clicked();
+    void on_pushButtonProduction_clicked();
+    void on_pushButton4_clicked();
+    void on_pushButton5_clicked();
+    void on_pushButton6_clicked();
+    void on_pushButton1_3_clicked();
+    void on_pushButton2_2_clicked();
+    void on_pushButton3_2_clicked();
+    void on_pushButton5_2_clicked();
+    void on_pushButton6_2_clicked();
 };
 #endif // MAINWINDOW_H
