@@ -6,6 +6,8 @@
 #include <QMessageBox>
 #include <QFile>
 
+#include <QProcess>
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -24,8 +26,13 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap imgBendUQ(assetsDir.absolutePath() + "/bendU.png");
     QPixmap imgSquareBendQ(assetsDir.absolutePath() + "/squareBend.png");
     QPixmap imgSquareFilledQ(assetsDir.absolutePath() + "/squareFilled.png");
-    // QString result = getConsoleOutput("whoami");
-    // ui->labelUserName->setText(result);
+
+    QProcess process;
+    process.start("whoami");
+    process.waitForFinished();
+    QByteArray result = process.readAllStandardOutput();
+
+    ui->labelUserName->setText("User: " + QString::fromUtf8(result));
     ui->zdjecie->setPixmap(zdjecieTest.scaled(100,100, Qt::KeepAspectRatio));
     ui->imgPipe->setPixmap(imgPipeQ.scaled(100,100, Qt::KeepAspectRatio));
     ui->imgGusset->setPixmap(imgGussetQ.scaled(100,100, Qt::KeepAspectRatio));
@@ -55,12 +62,6 @@ void MainWindow::on_pushButtonClose_clicked()
 
 void MainWindow::closeEvent(QCloseEvent *event){
     //event->ignore();
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
-
 }
 
 void delay()
@@ -98,7 +99,7 @@ void MainWindow::on_pushButton3_clicked()
 void MainWindow::on_pushButton4_clicked()
 {
     if (ui->spinBox4->value()!= 0){
-        ui->listWidget->addItem( "[#4] "+ QString::fromStdString(std::to_string(ui->spinBox4->value())) + "x Steel profile O-type 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#4] "+ QString::fromStdString(std::to_string(ui->spinBox4->value())) + "x Steel pipe O-type 20x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
@@ -107,7 +108,7 @@ void MainWindow::on_pushButton4_clicked()
 void MainWindow::on_pushButton5_clicked()
 {
     if (ui->spinBox5->value()!= 0){
-        ui->listWidget->addItem( "[#5] "+ QString::fromStdString(std::to_string(ui->spinBox5->value())) + "x Steel profile O-type 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#5] "+ QString::fromStdString(std::to_string(ui->spinBox5->value())) + "x Steel rod O-type 1x200cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
@@ -115,23 +116,24 @@ void MainWindow::on_pushButton5_clicked()
 void MainWindow::on_pushButton6_clicked()
 {
     if (ui->spinBox6->value()!= 0){
-        ui->listWidget->addItem( "[#6] "+ QString::fromStdString(std::to_string(ui->spinBox6->value())) + "x Steel profile O-type 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#6] "+ QString::fromStdString(std::to_string(ui->spinBox6->value())) + "x Steel sheet 100x100x0.3cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
 
-void MainWindow::on_pushButton1_3_clicked()
+void MainWindow::on_pushButton1_2_clicked()
 {
     if (ui->spinBox1_1->value()!= 0){
-        ui->listWidget->addItem( "[#7] "+ QString::fromStdString(std::to_string(ui->spinBox1_1->value())) + "x Steel profile O-type 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#7] "+ QString::fromStdString(std::to_string(ui->spinBox1_1->value())) + "x Steel pipe triangle-type 6x40cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
+
 
 void MainWindow::on_pushButton2_2_clicked()
 {
     if (ui->spinBox2_1->value()!= 0){
-        ui->listWidget->addItem( "[#8] "+ QString::fromStdString(std::to_string(ui->spinBox2_1->value())) + "x Steel profile O-type 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#8] "+ QString::fromStdString(std::to_string(ui->spinBox2_1->value())) + "x Steel pipe hexagon-type 2x20cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
@@ -139,7 +141,7 @@ void MainWindow::on_pushButton2_2_clicked()
 void MainWindow::on_pushButton3_2_clicked()
 {
     if (ui->spinBox3_1->value()!= 0){
-        ui->listWidget->addItem( "[#9] "+ QString::fromStdString(std::to_string(ui->spinBox3_1->value())) + "x Steel profile O-type 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#9] "+ QString::fromStdString(std::to_string(ui->spinBox3_1->value())) + "x Steel pipe hexagon-type 5x40cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
@@ -148,7 +150,7 @@ void MainWindow::on_pushButton3_2_clicked()
 void MainWindow::on_pushButton4_2_clicked()
 {
     if (ui->spinBox4_1->value()!= 0){
-        ui->listWidget->addItem( "[#10] "+ QString::fromStdString(std::to_string(ui->spinBox4_1->value())) + "x Steel soft U-bend circle profile 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#10] "+ QString::fromStdString(std::to_string(ui->spinBox4_1->value())) + "x Steel soft U-bend circle profile 20cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
@@ -156,7 +158,7 @@ void MainWindow::on_pushButton4_2_clicked()
 void MainWindow::on_pushButton5_2_clicked()
 {
     if (ui->spinBox5_1->value()!= 0){
-        ui->listWidget->addItem( "[#11] "+ QString::fromStdString(std::to_string(ui->spinBox5_1->value())) + "x Steel soft U-bend circle profile 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#11] "+ QString::fromStdString(std::to_string(ui->spinBox5_1->value())) + "x Steel soft U-bend square profile 30x30cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
@@ -164,7 +166,7 @@ void MainWindow::on_pushButton5_2_clicked()
 void MainWindow::on_pushButton6_2_clicked()
 {
     if (ui->spinBox6_1->value()!= 0){
-        ui->listWidget->addItem( "[#12] "+ QString::fromStdString(std::to_string(ui->spinBox6_1->value())) + "x Steel soft U-bend circle profile 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#12] "+ QString::fromStdString(std::to_string(ui->spinBox6_1->value())) + "x Steel rod rectangle-type 2x2x200cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
@@ -172,6 +174,9 @@ void MainWindow::on_pushButton6_2_clicked()
 void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
     delete item;
+    if(ui->listWidget->count() == 0){
+        ui->stackedWidget_2->setCurrentIndex(1);
+    }
 }
 
 
@@ -186,5 +191,38 @@ void MainWindow::on_pushButtonProduction_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
+
+
+
+void MainWindow::on_pushButtonSubmit_2_clicked()
+{
+
+    if(ui->acceptCheckBox->isChecked()){
+        QFile file("production.txt");
+        QTextStream out(&file);
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
+            qDebug() << "Could not open file for writing";
+            return;
+        }
+        else{
+        for(int i = 0 ; i < ui->listWidget->count(); i++){      //Save lines to file
+            QListWidgetItem *item = ui->listWidget->item(i);
+                if (item) {
+                    QString text = item->text();
+                    out << text << '\n';
+                }
+            }
+        }
+        file.close();
+        ui->stackedWidget_2->setCurrentIndex(1);
+        ui->acceptCheckBox->setChecked(false);
+        ui->listWidget->clear();
+    }
+    else {
+        //TODO: Komunikat o braku akceptacji
+         qDebug() << "Checkbox is not checked!";
+    }
+}
+
 
 

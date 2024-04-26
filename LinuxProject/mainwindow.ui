@@ -49,7 +49,7 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <property name="styleSheet">
@@ -144,7 +144,7 @@ QPushButton:hover{
             <item>
              <widget class="QPushButton" name="pushButtonReport">
               <property name="text">
-               <string>Raport error</string>
+               <string>Report error</string>
               </property>
              </widget>
             </item>
@@ -328,8 +328,14 @@ QPushButton:hover{
                       <pointsize>18</pointsize>
                      </font>
                     </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
                     <property name="text">
-                     <string>Are you sure you want to add those ?</string>
+                     <string>Confirm your products </string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -360,7 +366,7 @@ border: none;</string>
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QCheckBox" name="checkBox">
+                     <widget class="QCheckBox" name="acceptCheckBox">
                       <property name="text">
                        <string>accept</string>
                       </property>
@@ -629,9 +635,9 @@ border: none;</string>
                <widget class="QSpinBox" name="spinBox1_1"/>
               </item>
               <item>
-               <widget class="QPushButton" name="pushButton1_3">
+               <widget class="QPushButton" name="pushButton1_2">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -804,7 +810,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton2_2">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -854,7 +860,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton3_2">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -903,7 +909,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton4_2">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -952,7 +958,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton5_2">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -1001,7 +1007,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton6_2">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -1109,7 +1115,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton1">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -1282,7 +1288,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton2">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -1332,7 +1338,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton3">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -1381,7 +1387,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton4">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -1430,7 +1436,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton5">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
@@ -1479,7 +1485,7 @@ border: none;</string>
               <item>
                <widget class="QPushButton" name="pushButton6">
                 <property name="text">
-                 <string>Dodaj</string>
+                 <string>Add</string>
                 </property>
                </widget>
               </item>
