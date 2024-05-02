@@ -27,12 +27,13 @@ MainWindow::MainWindow(QWidget *parent)
     QPixmap imgSquareBendQ(assetsDir.absolutePath() + "/squareBend.png");
     QPixmap imgSquareFilledQ(assetsDir.absolutePath() + "/squareFilled.png");
 
+    //Displaying user name
     QProcess process;
     process.start("whoami");
     process.waitForFinished();
     QByteArray result = process.readAllStandardOutput();
-
     ui->labelUserName->setText("User: " + QString::fromUtf8(result));
+
     ui->zdjecie->setPixmap(zdjecieTest.scaled(100,100, Qt::KeepAspectRatio));
     ui->imgPipe->setPixmap(imgPipeQ.scaled(100,100, Qt::KeepAspectRatio));
     ui->imgGusset->setPixmap(imgGussetQ.scaled(100,100, Qt::KeepAspectRatio));
@@ -47,6 +48,15 @@ MainWindow::MainWindow(QWidget *parent)
     ui->imgSquareFilled->setPixmap(imgSquareFilledQ.scaled(100,100, Qt::KeepAspectRatio));
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_2->setCurrentIndex(1);
+
+    //Set up 'database'
+    //QDir productionDir("productions");
+    //if(!productionDir.exists()){
+    //    QDir().mkdir("productions");
+    //}
+    if(!QDir("productions").exists()){
+        QDir().mkdir("productions");
+    }
 }
 
 MainWindow::~MainWindow()
@@ -196,9 +206,9 @@ void MainWindow::on_pushButtonProduction_clicked()
 
 void MainWindow::on_pushButtonSubmit_2_clicked()
 {
-
     if(ui->acceptCheckBox->isChecked()){
-        QFile file("production.txt");
+        QString today = m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy");
+        QFile file("productions/production " + today + ".txt");
         QTextStream out(&file);
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Append)) {
             qDebug() << "Could not open file for writing";
