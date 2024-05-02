@@ -6,6 +6,10 @@
 #include <QCloseEvent>
 #include <QDir>
 #include <QDateTime>
+#include <QFile>
+#include <QProcess>
+#include <QDebug>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -41,5 +45,6 @@ private slots:
     void on_pushButton6_2_clicked();
     void on_pushButtonSubmit_2_clicked();
 
+    void on_pushButtonToday_clicked();
 };
 #endif // MAINWINDOW_H

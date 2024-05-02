@@ -49,9 +49,9 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
-      <widget class="QWidget" name="page">
+      <widget class="QWidget" name="mainPage">
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: #373F51;
@@ -181,7 +181,7 @@ QPushButton:hover{
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_1">
+      <widget class="QWidget" name="productionPage">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -1497,6 +1497,7 @@ border: none;</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="viewProductionPage"/>
      </widget>
     </item>
    </layout>

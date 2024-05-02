@@ -49,11 +49,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_2->setCurrentIndex(1);
 
-    //Set up 'database'
-    //QDir productionDir("productions");
-    //if(!productionDir.exists()){
-    //    QDir().mkdir("productions");
-    //}
     if(!QDir("productions").exists()){
         QDir().mkdir("productions");
     }
@@ -89,7 +84,6 @@ void MainWindow::on_pushButton1_clicked()
     }
 }
 
-
 void MainWindow::on_pushButton2_clicked()
 {
     if (ui->spinBox2->value()!= 0){
@@ -113,7 +107,6 @@ void MainWindow::on_pushButton4_clicked()
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
-
 
 void MainWindow::on_pushButton5_clicked()
 {
@@ -139,7 +132,6 @@ void MainWindow::on_pushButton1_2_clicked()
     }
 }
 
-
 void MainWindow::on_pushButton2_2_clicked()
 {
     if (ui->spinBox2_1->value()!= 0){
@@ -155,7 +147,6 @@ void MainWindow::on_pushButton3_2_clicked()
         ui->stackedWidget_2->setCurrentIndex(0);
     }
 }
-
 
 void MainWindow::on_pushButton4_2_clicked()
 {
@@ -196,12 +187,16 @@ void MainWindow::on_pushButtonCancel_clicked()
     ui->listWidget->clear();
 }
 
-
 void MainWindow::on_pushButtonProduction_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+
+void MainWindow::on_pushButtonToday_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+}
 
 
 void MainWindow::on_pushButtonSubmit_2_clicked()
@@ -229,8 +224,7 @@ void MainWindow::on_pushButtonSubmit_2_clicked()
         ui->listWidget->clear();
     }
     else {
-        //TODO: Komunikat o braku akceptacji
-         qDebug() << "Checkbox is not checked!";
+        QMessageBox::warning(nullptr, "Warning", "Please check the confirmation box");
     }
 }
 
