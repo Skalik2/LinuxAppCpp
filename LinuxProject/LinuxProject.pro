@@ -10,12 +10,14 @@ CONFIG += c++17
 
 SOURCES += \
     closehandler.cpp \
+    filemanage.cpp \
     main.cpp \
     mainwindow.cpp \
     misc.cpp
 
 HEADERS += \
     closehandler.h \
+    filemanage.h \
     mainwindow.h \
     misc.h
 
