@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "closehandler.h"
+#include "filemanage.h"
 
 #include <QApplication>
 #include <QWidget>
@@ -10,6 +11,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    FileManage fileManage;
     MainWindow w;
     Qt::WindowFlags flags = w.windowFlags();
     CloseHandler h;
