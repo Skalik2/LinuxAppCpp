@@ -7,6 +7,10 @@
 #include <QCloseEvent>
 #include <QDir>
 #include <QDateTime>
+#include <QFile>
+#include <QProcess>
+#include <QDebug>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -27,9 +31,6 @@ public:
     void buttonFunctions();
 private slots:
     void on_pushButtonClose_clicked();
-
-    void on_pushButton_clicked();
-
     void on_pushButton1_clicked();
     void on_pushButton2_clicked();
     void on_listWidget_itemClicked(QListWidgetItem *item);
@@ -45,6 +46,7 @@ private slots:
     void on_pushButton5_2_clicked();
     void on_pushButton6_2_clicked();
     void on_pushButtonSubmit_2_clicked();
+    void on_pushButtonToday_clicked();
     void on_pushButton1_2_clicked();
 };
 #endif // MAINWINDOW_H

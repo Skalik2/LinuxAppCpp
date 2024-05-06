@@ -49,9 +49,9 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
-      <widget class="QWidget" name="page">
+      <widget class="QWidget" name="mainPage">
        <property name="styleSheet">
         <string notr="true">QPushButton{
 background-color: #373F51;
@@ -144,7 +144,7 @@ QPushButton:hover{
             <item>
              <widget class="QPushButton" name="pushButtonReport">
               <property name="text">
-               <string>Raport error</string>
+               <string>Report error</string>
               </property>
              </widget>
             </item>
@@ -181,7 +181,7 @@ QPushButton:hover{
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="page_1">
+      <widget class="QWidget" name="productionPage">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -373,8 +373,14 @@ QPushButton:hover{
                       <pointsize>18</pointsize>
                      </font>
                     </property>
+                    <property name="layoutDirection">
+                     <enum>Qt::LeftToRight</enum>
+                    </property>
                     <property name="text">
-                     <string>Are you sure you want to add those ?</string>
+                     <string>Confirm your products </string>
+                    </property>
+                    <property name="alignment">
+                     <set>Qt::AlignCenter</set>
                     </property>
                    </widget>
                   </item>
@@ -405,7 +411,7 @@ border: none;</string>
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QCheckBox" name="checkBox">
+                     <widget class="QCheckBox" name="acceptCheckBox">
                       <property name="text">
                        <string>accept</string>
                       </property>
@@ -1565,6 +1571,7 @@ border: none;</string>
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="viewProductionPage"/>
      </widget>
     </item>
    </layout>
