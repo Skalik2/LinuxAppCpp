@@ -12,3 +12,11 @@
 //     }
 //     return QString(result);
 // }
+
+
+void delay(int miliseconds)
+{
+    QTime dieTime= QTime::currentTime().addMSecs(miliseconds);
+    while (QTime::currentTime() < dieTime)
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+}

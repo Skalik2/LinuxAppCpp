@@ -16,6 +16,11 @@
     <height>16777215</height>
    </size>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>15</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -49,7 +54,7 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="mainPage">
        <property name="styleSheet">
@@ -223,7 +228,14 @@ font: 18px;
           <item>
            <layout class="QVBoxLayout" name="verticalLayout_2">
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="pushButtonReturn">
+              <property name="font">
+               <font>
+                <pointsize>-1</pointsize>
+                <italic>false</italic>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
                <string>Return</string>
               </property>
@@ -411,7 +423,7 @@ border: none;</string>
                      </spacer>
                     </item>
                     <item>
-                     <widget class="QCheckBox" name="acceptCheckBox">
+                     <widget class="QCheckBox" name="checkBox">
                       <property name="text">
                        <string>accept</string>
                       </property>
@@ -1571,7 +1583,27 @@ border: none;</string>
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="viewProductionPage"/>
+      <widget class="QWidget" name="viewProductionPage">
+       <widget class="QPushButton" name="pushButtonReturn_2">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>74</width>
+          <height>31</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Return</string>
+        </property>
+       </widget>
+      </widget>
      </widget>
     </item>
    </layout>

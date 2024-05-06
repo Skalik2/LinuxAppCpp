@@ -3,12 +3,6 @@
 #include "misc.h"
 #include "filemanage.h"
 
-#include <QDebug>
-#include <QMessageBox>
-#include <QFile>
-
-#include <QProcess>
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -50,9 +44,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->stackedWidget->setCurrentIndex(0);
     ui->stackedWidget_2->setCurrentIndex(1);
 
-if(!QDir("productions").exists()){
-    QDir().mkdir("productions");
-}
 
 labels.append(ui->labelCount1);
 labels.append(ui->labelCount2);
@@ -83,23 +74,37 @@ void MainWindow::closeEvent(QCloseEvent *event){
     //event->ignore();
 }
 
-void MainWindow::on_pushButton_clicked()
+    //Main page handling
+
+void MainWindow::on_pushButtonProduction_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(1);
 }
 
-void delay(int miliseconds)
-
+void MainWindow::on_pushButtonToday_clicked()
 {
-    QTime dieTime= QTime::currentTime().addMSecs(miliseconds);
-    while (QTime::currentTime() < dieTime)
-        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+    ui->stackedWidget->setCurrentIndex(2);
 }
+
+void MainWindow::on_pushButtonReport_clicked()
+{
+    //TODO: report page
+}
+    //End of main page handling
+
+
+    //Handling production page
 
 void MainWindow::buttonFunctions(){
     ui->listWidget->setEnabled(true);
     ui->stackedWidget_2->setCurrentIndex(0);
 }
+
+void MainWindow::on_pushButtonReturn_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
 
 void MainWindow::on_pushButton1_clicked()
 {
@@ -161,7 +166,7 @@ void MainWindow::on_pushButton2_2_clicked()
 {
     if (ui->spinBox2_1->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#8] "+ QString::fromStdString(std::to_string(ui->spinBox2_1->value())) + "x Steel pipe hexagon-type 2x20cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));>>>>>>> main
+        ui->listWidget->addItem( "[#8] "+ QString::fromStdString(std::to_string(ui->spinBox2_1->value())) + "x Steel pipe hexagon-type 2x20cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -228,6 +233,9 @@ void MainWindow::on_pushButtonSubmit_2_clicked()
                 }
             }
         }
+        ui->labelError->setText(QString(""));
+        ui->listWidget->clear();
+        ui->checkBox->setChecked(false);
     }
     else{
         ui->labelError->setText(QString("You need to accept first!"));
@@ -243,13 +251,14 @@ void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
     }
 }
 
-void MainWindow::on_pushButtonProduction_clicked()
+    //End of production handling
+
+
+    //
+
+void MainWindow::on_pushButtonReturn_2_clicked()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 
-void MainWindow::on_pushButtonToday_clicked()
-{
-    ui->stackedWidget->setCurrentIndex(2);
-}
