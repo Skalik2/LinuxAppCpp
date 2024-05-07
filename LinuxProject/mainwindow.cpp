@@ -27,7 +27,17 @@ MainWindow::MainWindow(QWidget *parent)
     process.start("whoami");
     process.waitForFinished();
     QByteArray result = process.readAllStandardOutput();
-    ui->labelUserName->setText("User: " + QString::fromUtf8(result));
+    if(QString::fromUtf8(result).trimmed() == QString("admin")){
+        ui->stackedWidget->setCurrentIndex(3);
+        ui->labelUserNameAdmin->setText("User: " + QString::fromUtf8(result));
+    }
+    else{
+        ui->stackedWidget->setCurrentIndex(0);
+        ui->stackedWidget_2->setCurrentIndex(1);
+
+        ui->labelUserName->setText("User: " + QString::fromUtf8(result));
+    }
+
 
     ui->zdjecie->setPixmap(zdjecieTest.scaled(100,100, Qt::KeepAspectRatio));
     ui->imgPipe->setPixmap(imgPipeQ.scaled(100,100, Qt::KeepAspectRatio));
@@ -41,22 +51,25 @@ MainWindow::MainWindow(QWidget *parent)
     ui->imgBendU->setPixmap(imgBendUQ.scaled(100,100, Qt::KeepAspectRatio));
     ui->imgSquareBend->setPixmap(imgSquareBendQ.scaled(100,100, Qt::KeepAspectRatio));
     ui->imgSquareFilled->setPixmap(imgSquareFilledQ.scaled(100,100, Qt::KeepAspectRatio));
-    ui->stackedWidget->setCurrentIndex(0);
-    ui->stackedWidget_2->setCurrentIndex(1);
 
 
-labels.append(ui->labelCount1);
-labels.append(ui->labelCount2);
-labels.append(ui->labelCount3);
-labels.append(ui->labelCount4);
-labels.append(ui->labelCount5);
-labels.append(ui->labelCount6);
-labels.append(ui->labelCount1_2);
-labels.append(ui->labelCount2_2);
-labels.append(ui->labelCount3_2);
-labels.append(ui->labelCount4_2);
-labels.append(ui->labelCount5_2);
-labels.append(ui->labelCount6_2);
+    labels.append(ui->labelCount1);
+    labels.append(ui->labelCount2);
+    labels.append(ui->labelCount3);
+    labels.append(ui->labelCount4);
+    labels.append(ui->labelCount5);
+    labels.append(ui->labelCount6);
+    labels.append(ui->labelCount1_2);
+    labels.append(ui->labelCount2_2);
+    labels.append(ui->labelCount3_2);
+    labels.append(ui->labelCount4_2);
+    labels.append(ui->labelCount5_2);
+    labels.append(ui->labelCount6_2);
+
+    QMovie *movie = new QMovie(assetsDir.absolutePath()+"/loading.gif");
+    ui->loadingLabel->setMovie(movie);
+    ui->loadingLabel->show();
+    movie->start();
 }
 
 MainWindow::~MainWindow()
@@ -261,4 +274,24 @@ void MainWindow::on_pushButtonReturn_2_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+
+
+void MainWindow::on_pushButtonLogoutAdm_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+    QProcess process;
+    QDir assetsDir(QCoreApplication::applicationDirPath() + "/Scripts/./logout.sh");
+    process.start(assetsDir.absolutePath());
+    process.waitForFinished(-1);
+}
+
+
+void MainWindow::on_pushButtonLogout_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(4);
+    QProcess process;
+    QDir assetsDir(QCoreApplication::applicationDirPath() + "/Scripts/./logout.sh");
+    process.start(assetsDir.absolutePath());
+    process.waitForFinished(-1);
+}
 

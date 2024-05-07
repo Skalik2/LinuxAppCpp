@@ -11,6 +11,7 @@
 #include <QMessageBox>
 #include <QFile>
 #include <QProcess>
+#include <QMovie>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -51,5 +52,7 @@ private slots:
     void on_pushButtonReturn_clicked();
     void on_pushButtonReturn_2_clicked();
     void on_pushButtonReport_clicked();
+    void on_pushButtonLogoutAdm_clicked();
+    void on_pushButtonLogout_clicked();
 };
 #endif // MAINWINDOW_H
