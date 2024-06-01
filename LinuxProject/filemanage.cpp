@@ -2,19 +2,85 @@
 
 FileManage::FileManage() {}
 
-void FileManage::saveToFile(const QString &data){
-    QFile plik(m_fileName);
+void FileManage::saveToFile(const QString &data, const char type){
 
-    if (plik.open(QIODevice::Append | QIODevice::Text)) {
-        QTextStream stream(&plik);
-        if (plik.pos() == 0) {
+    QFile file(type == 'b' ? m_fileNameProduction : m_fileNameReports);
+
+    if (file.open(QIODevice::Append | QIODevice::Text)) {
+        QTextStream stream(&file);
+        if (file.pos() == 0) {
             stream << data;
         } else {
             stream << "\n" << data;
         }
-        plik.close();
-        qDebug() << "Dane zostały zapisane do pliku" << m_fileName;
+        file.close();
+        qDebug() << "Dane zostały zapisane do pliku " << (type == 'b' ? m_fileNameProduction : m_fileNameReports);
     } else {
-        qDebug() << "Nie można otworzyć pliku" << m_fileName << "do zapisu";
+        qDebug() << "Nie można otworzyć pliku" << (type == 'b' ? m_fileNameProduction : m_fileNameReports) << "do zapisu";
+    }
+}
+
+QVector<QPair<QString,QString>> FileManage::getFromFile(const char type){
+    QVector<QPair<QString, QString>> reportData;
+
+    QFile file(type == 'b' ? m_fileNameProduction : m_fileNameReports);
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream in(&file);
+        while (!in.atEnd()){
+            QString line = in.readLine();
+            QStringList parts = line.split('\t');
+            if(parts.size() == 2){
+                QString reportDescription = parts[0];
+                QString reportDate = parts[1];
+
+                reportData.append(qMakePair(reportDescription,reportDate));
+            }
+            else{
+                qDebug() << "Bledny format danych";
+            }
+        }
+
+        file.close();
+        return reportData;
+    }
+    else{
+        qDebug() << "Nie udalo sie wczytac pliku";
+        return reportData;
+    }
+}
+
+void FileManage::removeFromFile(const QString &reportDescription, QString &reportDate, const char type){
+    QFile file(type == 'b' ? m_fileNameProduction : m_fileNameReports);
+    if(file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QVector<QPair<QString, QString>> reportData;
+        QTextStream in(&file);
+        while (!in.atEnd()){
+            QString line = in.readLine();
+            QStringList parts = line.split('\t');
+            if(parts.size() == 2){
+                QString description = parts[0];
+                QString date = parts[1];
+                qDebug() << "Test z metody: " << parts[0]  << " " << parts[1];
+                if(description !=  reportDescription || date != reportDate)
+                {
+                    reportData.append(qMakePair(description,date));
+                }
+            }
+            else{
+                qDebug() << "Bledny format danych";
+            }
+        }
+
+        file.close();
+        if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate)){
+            QTextStream out(&file);
+            for(const auto &data:reportData){
+                qDebug() << data.first << " " << data.second;
+                out << data.first << "\t" << data.second << '\n';
+            }
+        }
+    }
+    else{
+        qDebug() << "Nie udalo sie wczytac pliku";
     }
 }

@@ -31,6 +31,7 @@ public:
     void closeEvent(QCloseEvent *event) override;
     void buttonFunctions();
 private slots:
+    void loadReports();
     void on_pushButtonClose_clicked();
     void on_pushButton1_clicked();
     void on_pushButton2_clicked();
@@ -54,5 +55,12 @@ private slots:
     void on_pushButtonReport_clicked();
     void on_pushButtonLogoutAdm_clicked();
     void on_pushButtonLogout_clicked();
+    void on_pushButton_2_clicked();
+    void on_pushButtonReturn_3_clicked();
+    void on_pushButton_clicked();
+    void on_pushButtonReport_2_clicked();
+    void on_listWidget_2_itemClicked(QListWidgetItem *item);
+    void on_pushButtonReturn_5_clicked();
+    void on_pushButton_3_clicked();
 };
 #endif // MAINWINDOW_H

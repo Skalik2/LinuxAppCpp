@@ -27,9 +27,9 @@ MainWindow::MainWindow(QWidget *parent)
     process.start("whoami");
     process.waitForFinished();
     QByteArray result = process.readAllStandardOutput();
-    if(QString::fromUtf8(result).trimmed() == QString("admin")){
+    if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
         ui->stackedWidget->setCurrentIndex(3);
-        ui->labelUserNameAdmin->setText("User: " + QString::fromUtf8(result));
+        ui->labelUserNameAdmin->setText("Admin: " + QString::fromUtf8(result));
     }
     else{
         ui->stackedWidget->setCurrentIndex(0);
@@ -70,6 +70,31 @@ MainWindow::MainWindow(QWidget *parent)
     ui->loadingLabel->setMovie(movie);
     ui->loadingLabel->show();
     movie->start();
+
+    /*ui->stackedWidget->setCurrentIndex(0); - menu
+     *ui->stackedWidget->setCurrentIndex(1); - production
+     *ui->stackedWidget->setCurrentIndex(2); - today's manifacture
+     *ui->stackedWidget->setCurrentIndex(3); - admin menu
+     *ui->stackedWidget->setCurrentIndex(4); - loading
+     *ui->stackedWidget->setCurrentIndex(5); - report
+    */
+}
+
+void MainWindow::loadReports(){
+    FileManage f;
+    QVector<QPair<QString,QString>> data = f.getFromFile('r');
+    int i = 1;
+    ui->listWidget_2->clear();
+    ui->textEdit_2->clear();
+    for(const auto &elements: data)
+    {
+        QString itemText = QString("Report[%1]:\n\n%2\nDate\n%3").arg(QString::number(i),elements.first, elements.second);
+        ui->listWidget_2->addItem(itemText);
+        i+=1;
+    }
+    if (ui->textEdit_2->toPlainText().isEmpty()){
+        ui->textEdit_2->setText(QString("No reports found!"));
+    }
 }
 
 MainWindow::~MainWindow()
@@ -101,7 +126,7 @@ void MainWindow::on_pushButtonToday_clicked()
 
 void MainWindow::on_pushButtonReport_clicked()
 {
-    //TODO: report page
+    ui->stackedWidget->setCurrentIndex(5);
 }
     //End of main page handling
 
@@ -233,16 +258,16 @@ void MainWindow::on_pushButtonSubmit_2_clicked()
             QListWidgetItem *item = ui->listWidget->item(i);
             if (item->text().at(3).isNumber()){
                 if (item->text().at(7).isNumber()){
-                    f.saveToFile(item->text().mid(2,2) + "\t" + item->text().mid(6,2) + "\t" + item->text().mid(item->text().length() - 19,19));
+                    f.saveToFile(item->text().mid(2,2) + "\t" + item->text().mid(6,2) + "\t" + item->text().mid(item->text().length() - 19,19), 'b');
                 }else{
-                    f.saveToFile(item->text().mid(2,2) + "\t" + item->text().mid(6,1) + "\t" + item->text().mid(item->text().length() - 19,19));
+                    f.saveToFile(item->text().mid(2,2) + "\t" + item->text().mid(6,1) + "\t" + item->text().mid(item->text().length() - 19,19), 'b');
                 }
             }
             else{
                 if (item->text().at(6).isNumber()){
-                    f.saveToFile(item->text().mid(2,1) + "\t" + item->text().mid(5,2) + "\t" + item->text().mid(item->text().length() - 19,19));
+                    f.saveToFile(item->text().mid(2,1) + "\t" + item->text().mid(5,2) + "\t" + item->text().mid(item->text().length() - 19,19), 'b');
                 }else{
-                    f.saveToFile(item->text().mid(2,1) + "\t" + item->text().mid(5,1) + "\t" + item->text().mid(item->text().length() - 19,19));
+                    f.saveToFile(item->text().mid(2,1) + "\t" + item->text().mid(5,1) + "\t" + item->text().mid(item->text().length() - 19,19), 'b');
                 }
             }
         }
@@ -293,5 +318,55 @@ void MainWindow::on_pushButtonLogout_clicked()
     QDir assetsDir(QCoreApplication::applicationDirPath() + "/Scripts/./logout.sh");
     process.start(assetsDir.absolutePath());
     process.waitForFinished(-1);
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    ui->textEdit->clear();
+}
+
+
+void MainWindow::on_pushButtonReturn_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    FileManage f;
+    f.saveToFile(ui->textEdit->toPlainText() + "\t" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm"),'r');
+    ui->textEdit->clear();
+    delay(500);
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::on_pushButtonReport_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(6);
+    loadReports();
+}
+
+
+void MainWindow::on_listWidget_2_itemClicked(QListWidgetItem *item)
+{
+    ui->textEdit_2->setText(item->text());
+}
+
+
+void MainWindow::on_pushButtonReturn_5_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QListWidgetItem *selectedItem = ui->listWidget_2->currentItem();
+    FileManage f;
+    QStringList parts = selectedItem->text().split('\n');
+    f.removeFromFile(parts[2],parts[4],'r');
+    loadReports();
 }
 

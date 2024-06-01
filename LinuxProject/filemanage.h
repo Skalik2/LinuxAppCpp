@@ -4,13 +4,18 @@
 #include <QString>
 #include <QFile>
 #include <QDebug>
+#include <QVector>
+#include <QPair>
 
 class FileManage
 {
-    QString m_fileName = QString("baza.data");
+    QString m_fileNameProduction = QString("baza.data");
+    QString m_fileNameReports = QString("reports.data");
 public:
     FileManage();
-    void saveToFile(const QString &data);
+    void saveToFile(const QString &data, const char type);
+    QVector<QPair<QString,QString>> getFromFile(const char type);
+    void removeFromFile(const QString &reportDescription, QString &reportDate, const char type);
 };
 
 #endif // FILEMANAGE_H
