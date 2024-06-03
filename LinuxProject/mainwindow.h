@@ -32,6 +32,8 @@ public:
     void buttonFunctions();
 private slots:
     void loadReports();
+    void setProductionTable();
+    void loadProduction();
     void on_pushButtonClose_clicked();
     void on_pushButton1_clicked();
     void on_pushButton2_clicked();
@@ -62,5 +64,6 @@ private slots:
     void on_listWidget_2_itemClicked(QListWidgetItem *item);
     void on_pushButtonReturn_5_clicked();
     void on_pushButton_3_clicked();
+    void on_pushButtonToday_2_clicked();
 };
 #endif // MAINWINDOW_H

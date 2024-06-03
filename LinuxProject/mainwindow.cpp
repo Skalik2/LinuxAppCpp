@@ -3,6 +3,21 @@
 #include "misc.h"
 #include "filemanage.h"
 
+QVector<QString> productNames = {
+    "Armored steel channel 40x10x120cm",
+    "Steel profile H-type 30x20x120cm",
+    "Steel closed square profile 30x30x120cm",
+    "Steel pipe O-type 20x120cm",
+    "Steel rod O-type 1x200cm",
+    "Steel sheet 100x100x0.3cm",
+    "Steel pipe triangle-type 6x40cm",
+    "Steel pipe hexagon-type 2x20cm",
+    "Steel pipe hexagon-type 5x40cm",
+    "Steel soft U-bend circle profile 20cm",
+    "Steel soft U-bend square profile 30x30cm",
+    "Steel rod rectangle-type 2x2x200cm"
+};
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -27,16 +42,17 @@ MainWindow::MainWindow(QWidget *parent)
     process.start("whoami");
     process.waitForFinished();
     QByteArray result = process.readAllStandardOutput();
-    if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
+    /*if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
         ui->stackedWidget->setCurrentIndex(3);
         ui->labelUserNameAdmin->setText("Admin: " + QString::fromUtf8(result));
     }
-    else{
+    else*/{
         ui->stackedWidget->setCurrentIndex(0);
         ui->stackedWidget_2->setCurrentIndex(1);
 
         ui->labelUserName->setText("User: " + QString::fromUtf8(result));
     }
+
 
 
     ui->zdjecie->setPixmap(zdjecieTest.scaled(100,100, Qt::KeepAspectRatio));
@@ -77,7 +93,11 @@ MainWindow::MainWindow(QWidget *parent)
      *ui->stackedWidget->setCurrentIndex(3); - admin menu
      *ui->stackedWidget->setCurrentIndex(4); - loading
      *ui->stackedWidget->setCurrentIndex(5); - report
+     *ui->stackedWidget->setCurrentIndex(6); - admin reports
+     *ui->stackedWidget->setCurrentIndex(7); - admin production
     */
+
+
 }
 
 void MainWindow::loadReports(){
@@ -94,6 +114,39 @@ void MainWindow::loadReports(){
     }
     if (ui->textEdit_2->toPlainText().isEmpty()){
         ui->textEdit_2->setText(QString("No reports found!"));
+    }
+}
+
+void MainWindow::setProductionTable(){
+    ui->tableWidget->clear();
+    ui->tableWidget->setColumnCount(3);
+    QStringList headers;
+    headers << "ID" << "Name" << "Quantity";
+    ui->tableWidget->setHorizontalHeaderLabels(headers);
+    ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    ui->tableWidget->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+}
+
+void MainWindow::loadProduction(){
+    FileManage f;
+
+    // Ustalenie liczby wierszy
+    QVector<int> production = f.getProductionFromFile('b');
+    if (ui->tableWidget->rowCount() < productNames.size()) {
+        ui->tableWidget->setRowCount(productNames.size());
+    }
+
+    setProductionTable();
+
+    // Wypełnienie wierszy danymi
+    for (int i = 0; i < productNames.size(); ++i) {
+        ui->tableWidget->setItem(i, 0, new QTableWidgetItem(QString::number(i+1)));
+        QString productName = (i < productNames.size()) ? productNames[i] : "Unknown Product";
+        ui->tableWidget->setItem(i, 1, new QTableWidgetItem(productName));
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(QString::number(0)));
+    }
+    for (int i = 0; i < production.size(); ++i){
+        ui->tableWidget->setItem(i-1, 2, new QTableWidgetItem(QString::number(production[i])));
     }
 }
 
@@ -122,6 +175,7 @@ void MainWindow::on_pushButtonProduction_clicked()
 void MainWindow::on_pushButtonToday_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
+    loadProduction();
 }
 
 void MainWindow::on_pushButtonReport_clicked()
@@ -148,7 +202,7 @@ void MainWindow::on_pushButton1_clicked()
 {
     if (ui->spinBox1->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#1] "+ QString::fromStdString(std::to_string(ui->spinBox1->value())) + "x Armored steel channel 40x10x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#1] "+ QString::fromStdString(std::to_string(ui->spinBox1->value())) + "x "+ productNames[0] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -156,7 +210,7 @@ void MainWindow::on_pushButton2_clicked()
 {
     if (ui->spinBox2->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#2] "+ QString::fromStdString(std::to_string(ui->spinBox2->value())) + "x Steel profile H-type 30x20x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#2] "+ QString::fromStdString(std::to_string(ui->spinBox2->value())) + "x "+ productNames[1] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -164,7 +218,7 @@ void MainWindow::on_pushButton3_clicked()
 {
     if (ui->spinBox3->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#3] "+ QString::fromStdString(std::to_string(ui->spinBox3->value())) + "x Steel closed square profile 30x30x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#3] "+ QString::fromStdString(std::to_string(ui->spinBox3->value())) + "x "+ productNames[2] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -172,7 +226,7 @@ void MainWindow::on_pushButton4_clicked()
 {
     if (ui->spinBox4->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#4] "+ QString::fromStdString(std::to_string(ui->spinBox4->value())) + "x Steel pipe O-type 20x120cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#4] "+ QString::fromStdString(std::to_string(ui->spinBox4->value())) + "x "+ productNames[3] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -180,7 +234,7 @@ void MainWindow::on_pushButton5_clicked()
 {
     if (ui->spinBox5->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#5] "+ QString::fromStdString(std::to_string(ui->spinBox5->value())) + "x Steel rod O-type 1x200cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#5] "+ QString::fromStdString(std::to_string(ui->spinBox5->value())) + "x "+ productNames[4] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -188,7 +242,7 @@ void MainWindow::on_pushButton6_clicked()
 {
     if (ui->spinBox6->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#6] "+ QString::fromStdString(std::to_string(ui->spinBox6->value())) + "x Steel sheet 100x100x0.3cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#6] "+ QString::fromStdString(std::to_string(ui->spinBox6->value())) + "x "+ productNames[5] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -196,7 +250,7 @@ void MainWindow::on_pushButton1_2_clicked()
 {
     if (ui->spinBox1_1->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#7] "+ QString::fromStdString(std::to_string(ui->spinBox1_1->value())) + "x Steel pipe triangle-type 6x40cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#7] "+ QString::fromStdString(std::to_string(ui->spinBox1_1->value())) + "x "+ productNames[6] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -204,7 +258,7 @@ void MainWindow::on_pushButton2_2_clicked()
 {
     if (ui->spinBox2_1->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#8] "+ QString::fromStdString(std::to_string(ui->spinBox2_1->value())) + "x Steel pipe hexagon-type 2x20cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#8] "+ QString::fromStdString(std::to_string(ui->spinBox2_1->value())) + "x "+ productNames[7] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -212,7 +266,7 @@ void MainWindow::on_pushButton3_2_clicked()
 {
     if (ui->spinBox3_1->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#9] "+ QString::fromStdString(std::to_string(ui->spinBox3_1->value())) + "x Steel pipe hexagon-type 5x40cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#9] "+ QString::fromStdString(std::to_string(ui->spinBox3_1->value())) + "x "+ productNames[8] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -220,7 +274,7 @@ void MainWindow::on_pushButton4_2_clicked()
 {
     if (ui->spinBox4_1->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#10] "+ QString::fromStdString(std::to_string(ui->spinBox4_1->value())) + "x Steel soft U-bend circle profile 20cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#10] "+ QString::fromStdString(std::to_string(ui->spinBox4_1->value())) + "x "+ productNames[9] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -228,7 +282,7 @@ void MainWindow::on_pushButton5_2_clicked()
 {
     if (ui->spinBox5_1->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#11] "+ QString::fromStdString(std::to_string(ui->spinBox5_1->value())) + "x Steel soft U-bend square profile 30x30cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#11] "+ QString::fromStdString(std::to_string(ui->spinBox5_1->value())) + "x "+ productNames[10] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -236,7 +290,7 @@ void MainWindow::on_pushButton6_2_clicked()
 {
     if (ui->spinBox6_1->value()!= 0){
         buttonFunctions();
-        ui->listWidget->addItem( "[#12] "+ QString::fromStdString(std::to_string(ui->spinBox6_1->value())) + "x Steel rod rectangle-type 2x2x200cm |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->listWidget->addItem( "[#12] "+ QString::fromStdString(std::to_string(ui->spinBox6_1->value())) + "x "+ productNames[11] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
     }
 }
 
@@ -368,5 +422,11 @@ void MainWindow::on_pushButton_3_clicked()
     QStringList parts = selectedItem->text().split('\n');
     f.removeFromFile(parts[2],parts[4],'r');
     loadReports();
+}
+
+
+void MainWindow::on_pushButtonToday_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(7);
 }
 

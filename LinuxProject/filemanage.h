@@ -6,6 +6,7 @@
 #include <QDebug>
 #include <QVector>
 #include <QPair>
+#include <QDateTime>
 
 class FileManage
 {
@@ -16,6 +17,7 @@ public:
     void saveToFile(const QString &data, const char type);
     QVector<QPair<QString,QString>> getFromFile(const char type);
     void removeFromFile(const QString &reportDescription, QString &reportDate, const char type);
+    QVector<int> getProductionFromFile(const char type);
 };
 
 #endif // FILEMANAGE_H

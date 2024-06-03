@@ -84,3 +84,33 @@ void FileManage::removeFromFile(const QString &reportDescription, QString &repor
         qDebug() << "Nie udalo sie wczytac pliku";
     }
 }
+
+// Funkcja do przetwarzania danych z pliku
+QVector<int> FileManage::getProductionFromFile(const char type) {
+    QFile file(type == 'b' ? m_fileNameProduction : m_fileNameReports);
+    QVector<int> itemCounts; // Tablica na liczbę przedmiotów
+    QDate today = QDate::currentDate(); // Dzisiejsza data
+
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        while (!in.atEnd()) {
+            QString line = in.readLine();
+            QStringList parts = line.split('\t');
+            int id = parts[0].toInt();
+            int quantity = parts[1].toInt();
+            QDateTime dateTime = QDateTime::fromString(parts[2], "dd.MM.yyyy-hh:mm:ss");
+            if (dateTime.date() == today) {
+                if (id >= itemCounts.size()) {
+                    itemCounts.resize(id + 1);
+                }
+                itemCounts[id] += quantity;
+            }
+        }
+    }
+    else {
+        qWarning() << "Nie można otworzyć pliku:";
+        return itemCounts;
+    }
+    file.close();
+    return itemCounts;
+}
