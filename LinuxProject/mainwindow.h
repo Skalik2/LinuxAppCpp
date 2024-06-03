@@ -37,6 +37,8 @@ private slots:
     void loadReports();
     void setProductionTable();
     void loadProduction();
+    void loadAllProduction();
+    void saveAllProduction();
     void on_pushButtonClose_clicked();
     void on_pushButton1_clicked();
     void on_pushButton2_clicked();
@@ -70,5 +72,6 @@ private slots:
     void on_pushButtonToday_2_clicked();
     void on_pushButtonReturn_6_clicked();
     void on_pushButtonReturn_7_clicked();
+    void on_pushButton_4_clicked();
 };
 #endif // MAINWINDOW_H

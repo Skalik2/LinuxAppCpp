@@ -8,6 +8,8 @@
 #include <QPair>
 #include <QDateTime>
 
+#include "productData.h"
+
 class FileManage
 {
     QString m_fileNameProduction = QString("baza.data");
@@ -18,6 +20,8 @@ public:
     QVector<QPair<QString,QString>> getFromFile(const char type);
     void removeFromFile(const QString &reportDescription, QString &reportDate, const char type);
     QVector<int> getProductionFromFile(const char type);
+    QVector<ProductData> getAllProduction(const char type);
+    void saveAllProduction(const char type);
 };
 
 #endif // FILEMANAGE_H

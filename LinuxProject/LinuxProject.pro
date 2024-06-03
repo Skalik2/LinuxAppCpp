@@ -19,7 +19,9 @@ HEADERS += \
     closehandler.h \
     filemanage.h \
     mainwindow.h \
-    misc.h
+    misc.h \
+    productData.h \
+    productdata.h
 
 FORMS += \
     mainwindow.ui
