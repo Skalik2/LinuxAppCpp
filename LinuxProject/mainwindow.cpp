@@ -197,12 +197,19 @@ void MainWindow::on_pushButtonReturn_clicked()
     ui->stackedWidget->setCurrentIndex(0);
 }
 
+void MainWindow::setLabelText(int labelId, int amountToAdd){
+    QString labelText = labels[labelId]->text();
+    int currentValue = labelText.toInt();
+    int newValue = currentValue + amountToAdd;
+    labels[labelId]->setText(QString::number(newValue));
+}
 
 void MainWindow::on_pushButton1_clicked()
 {
     if (ui->spinBox1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#1] "+ QString::fromStdString(std::to_string(ui->spinBox1->value())) + "x "+ productNames[0] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(0,ui->spinBox1->value());
         ui->spinBox1->setValue(0);
     }
 }
@@ -212,6 +219,7 @@ void MainWindow::on_pushButton2_clicked()
     if (ui->spinBox2->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#2] "+ QString::fromStdString(std::to_string(ui->spinBox2->value())) + "x "+ productNames[1] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(1,ui->spinBox2->value());
         ui->spinBox2->setValue(0);
     }
 }
@@ -221,6 +229,7 @@ void MainWindow::on_pushButton3_clicked()
     if (ui->spinBox3->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#3] "+ QString::fromStdString(std::to_string(ui->spinBox3->value())) + "x "+ productNames[2] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(2,ui->spinBox3->value());
         ui->spinBox3->setValue(0);
     }
 }
@@ -230,6 +239,7 @@ void MainWindow::on_pushButton4_clicked()
     if (ui->spinBox4->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#4] "+ QString::fromStdString(std::to_string(ui->spinBox4->value())) + "x "+ productNames[3] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(3,ui->spinBox4->value());
         ui->spinBox4->setValue(0);
     }
 }
@@ -239,6 +249,7 @@ void MainWindow::on_pushButton5_clicked()
     if (ui->spinBox5->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#5] "+ QString::fromStdString(std::to_string(ui->spinBox5->value())) + "x "+ productNames[4] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(4,ui->spinBox5->value());
         ui->spinBox5->setValue(0);
     }
 }
@@ -248,6 +259,7 @@ void MainWindow::on_pushButton6_clicked()
     if (ui->spinBox6->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#6] "+ QString::fromStdString(std::to_string(ui->spinBox6->value())) + "x "+ productNames[5] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(5,ui->spinBox6->value());
         ui->spinBox6->setValue(0);
     }
 }
@@ -257,6 +269,7 @@ void MainWindow::on_pushButton1_2_clicked()
     if (ui->spinBox1_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#7] "+ QString::fromStdString(std::to_string(ui->spinBox1_1->value())) + "x "+ productNames[6] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(6,ui->spinBox1_1->value());
         ui->spinBox1_1->setValue(0);
     }
 }
@@ -266,6 +279,7 @@ void MainWindow::on_pushButton2_2_clicked()
     if (ui->spinBox2_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#8] "+ QString::fromStdString(std::to_string(ui->spinBox2_1->value())) + "x "+ productNames[7] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(7,ui->spinBox2_1->value());
         ui->spinBox2_1->setValue(0);
     }
 }
@@ -275,6 +289,7 @@ void MainWindow::on_pushButton3_2_clicked()
     if (ui->spinBox3_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#9] "+ QString::fromStdString(std::to_string(ui->spinBox3_1->value())) + "x "+ productNames[8] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(8,ui->spinBox3_1->value());
         ui->spinBox3_1->setValue(0);
     }
 }
@@ -284,6 +299,7 @@ void MainWindow::on_pushButton4_2_clicked()
     if (ui->spinBox4_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#10] "+ QString::fromStdString(std::to_string(ui->spinBox4_1->value())) + "x "+ productNames[9] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(9,ui->spinBox4_1->value());
         ui->spinBox4_1->setValue(0);
     }
 }
@@ -293,6 +309,7 @@ void MainWindow::on_pushButton5_2_clicked()
     if (ui->spinBox5_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#11] "+ QString::fromStdString(std::to_string(ui->spinBox5_1->value())) + "x "+ productNames[10] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(10,ui->spinBox5_1->value());
         ui->spinBox5_1->setValue(0);
     }
 }
@@ -302,6 +319,7 @@ void MainWindow::on_pushButton6_2_clicked()
     if (ui->spinBox6_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#12] "+ QString::fromStdString(std::to_string(ui->spinBox6_1->value())) + "x "+ productNames[11] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        setLabelText(11,ui->spinBox6_1->value());
         ui->spinBox6_1->setValue(0);
     }
 }
@@ -348,6 +366,21 @@ void MainWindow::on_pushButtonSubmit_2_clicked()
 
 void MainWindow::on_listWidget_itemClicked(QListWidgetItem *item)
 {
+    int id, amount;
+    QStringList parts = item->text().split(" ");
+    QRegularExpression re("\\d+");
+    QRegularExpressionMatch idExpression = re.match(parts[0]);
+    QRegularExpressionMatch amountExpression = re.match(parts[1]);
+
+    QString numberString = idExpression.captured(0);
+    id = numberString.toInt();
+    numberString = amountExpression.captured(0);
+    amount = numberString.toInt();
+
+    QString labelText = labels[id-1]->text();
+    int currentValue = labelText.toInt();
+    int newValue = currentValue - amount;
+    labels[id-1]->setText(QString::number(newValue));
     delete item;
     if(ui->listWidget->count() == 0){
         delay(500);

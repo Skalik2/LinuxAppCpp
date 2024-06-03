@@ -12,6 +12,8 @@
 #include <QFile>
 #include <QProcess>
 #include <QMovie>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,6 +31,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void closeEvent(QCloseEvent *event) override;
+    void setLabelText(int labelId, int amountToAdd);
     void buttonFunctions();
 private slots:
     void loadReports();
