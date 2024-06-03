@@ -328,6 +328,10 @@ void MainWindow::on_pushButtonCancel_clicked()
 {
     ui->stackedWidget_2->setCurrentIndex(1);
     ui->listWidget->clear();
+    for (auto i:labels)
+    {
+        i->setText("0");
+    }
 }
 
 void MainWindow::on_pushButtonSubmit_2_clicked()
@@ -354,6 +358,10 @@ void MainWindow::on_pushButtonSubmit_2_clicked()
                     f.saveToFile(item->text().mid(2,1) + "\t" + item->text().mid(5,1) + "\t" + item->text().mid(item->text().length() - 19,19), 'b');
                 }
             }
+        }
+        for (auto i:labels)
+        {
+            i->setText("0");
         }
         ui->labelError->setText(QString(""));
         ui->listWidget->clear();
