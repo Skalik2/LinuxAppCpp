@@ -42,11 +42,11 @@ MainWindow::MainWindow(QWidget *parent)
     process.start("whoami");
     process.waitForFinished();
     QByteArray result = process.readAllStandardOutput();
-    /*if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
+    if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
         ui->stackedWidget->setCurrentIndex(3);
         ui->labelUserNameAdmin->setText("Admin: " + QString::fromUtf8(result));
     }
-    else*/{
+    else{
         ui->stackedWidget->setCurrentIndex(0);
         ui->stackedWidget_2->setCurrentIndex(1);
 
@@ -108,7 +108,7 @@ void MainWindow::loadReports(){
     ui->textEdit_2->clear();
     for(const auto &elements: data)
     {
-        QString itemText = QString("Report[%1]:\n\n%2\nDate\n%3").arg(QString::number(i),elements.first, elements.second);
+        QString itemText = QString("Report[%1]:\n%2\nDate\n%3\n").arg(QString::number(i),elements.first, elements.second);
         ui->listWidget_2->addItem(itemText);
         i+=1;
     }
@@ -487,5 +487,11 @@ void MainWindow::on_pushButtonToday_2_clicked()
 void MainWindow::on_pushButtonReturn_6_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_pushButtonReturn_7_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
 }
 
