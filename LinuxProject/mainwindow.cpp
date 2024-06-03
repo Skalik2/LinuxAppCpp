@@ -203,6 +203,7 @@ void MainWindow::on_pushButton1_clicked()
     if (ui->spinBox1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#1] "+ QString::fromStdString(std::to_string(ui->spinBox1->value())) + "x "+ productNames[0] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox1->setValue(0);
     }
 }
 
@@ -211,6 +212,7 @@ void MainWindow::on_pushButton2_clicked()
     if (ui->spinBox2->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#2] "+ QString::fromStdString(std::to_string(ui->spinBox2->value())) + "x "+ productNames[1] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox2->setValue(0);
     }
 }
 
@@ -219,6 +221,7 @@ void MainWindow::on_pushButton3_clicked()
     if (ui->spinBox3->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#3] "+ QString::fromStdString(std::to_string(ui->spinBox3->value())) + "x "+ productNames[2] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox3->setValue(0);
     }
 }
 
@@ -227,6 +230,7 @@ void MainWindow::on_pushButton4_clicked()
     if (ui->spinBox4->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#4] "+ QString::fromStdString(std::to_string(ui->spinBox4->value())) + "x "+ productNames[3] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox4->setValue(0);
     }
 }
 
@@ -235,6 +239,7 @@ void MainWindow::on_pushButton5_clicked()
     if (ui->spinBox5->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#5] "+ QString::fromStdString(std::to_string(ui->spinBox5->value())) + "x "+ productNames[4] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox5->setValue(0);
     }
 }
 
@@ -243,6 +248,7 @@ void MainWindow::on_pushButton6_clicked()
     if (ui->spinBox6->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#6] "+ QString::fromStdString(std::to_string(ui->spinBox6->value())) + "x "+ productNames[5] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox6->setValue(0);
     }
 }
 
@@ -251,6 +257,7 @@ void MainWindow::on_pushButton1_2_clicked()
     if (ui->spinBox1_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#7] "+ QString::fromStdString(std::to_string(ui->spinBox1_1->value())) + "x "+ productNames[6] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox1_1->setValue(0);
     }
 }
 
@@ -259,6 +266,7 @@ void MainWindow::on_pushButton2_2_clicked()
     if (ui->spinBox2_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#8] "+ QString::fromStdString(std::to_string(ui->spinBox2_1->value())) + "x "+ productNames[7] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox2_1->setValue(0);
     }
 }
 
@@ -267,6 +275,7 @@ void MainWindow::on_pushButton3_2_clicked()
     if (ui->spinBox3_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#9] "+ QString::fromStdString(std::to_string(ui->spinBox3_1->value())) + "x "+ productNames[8] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox3_1->setValue(0);
     }
 }
 
@@ -275,6 +284,7 @@ void MainWindow::on_pushButton4_2_clicked()
     if (ui->spinBox4_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#10] "+ QString::fromStdString(std::to_string(ui->spinBox4_1->value())) + "x "+ productNames[9] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox4_1->setValue(0);
     }
 }
 
@@ -283,6 +293,7 @@ void MainWindow::on_pushButton5_2_clicked()
     if (ui->spinBox5_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#11] "+ QString::fromStdString(std::to_string(ui->spinBox5_1->value())) + "x "+ productNames[10] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox5_1->setValue(0);
     }
 }
 
@@ -291,6 +302,7 @@ void MainWindow::on_pushButton6_2_clicked()
     if (ui->spinBox6_1->value()!= 0){
         buttonFunctions();
         ui->listWidget->addItem( "[#12] "+ QString::fromStdString(std::to_string(ui->spinBox6_1->value())) + "x "+ productNames[11] +" |" + m_currentDate.currentDateTimeUtc().toLocalTime().toString("dd.MM.yyyy-hh:mm:ss"));
+        ui->spinBox6_1->setValue(0);
     }
 }
 
@@ -428,5 +440,11 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_pushButtonToday_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(7);
+}
+
+
+void MainWindow::on_pushButtonReturn_6_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
