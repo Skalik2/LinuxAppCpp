@@ -43,11 +43,11 @@ MainWindow::MainWindow(QWidget *parent)
     process.start("whoami");
     process.waitForFinished();
     QByteArray result = process.readAllStandardOutput();
-    /*if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
+    if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
         ui->stackedWidget->setCurrentIndex(3);
         ui->labelUserNameAdmin->setText("Admin: " + QString::fromUtf8(result));
     }
-    else*/{
+    else{
         ui->stackedWidget->setCurrentIndex(0);
         ui->stackedWidget_2->setCurrentIndex(1);
         ui->labelUserName->setText("User: " + QString::fromUtf8(result));
@@ -567,17 +567,29 @@ void MainWindow::on_pushButton_5_clicked()
     ui->lineEditAdminPassword->clear();
     ui->lineEditLogin->clear();
     ui->lineEditPassword->clear();
+
+    ui->labelErrorAdd->setText("User " + username + "added successfully");
+    delay(500);
+    ui->labelErrorAdd->setText("");
 }
 
 void MainWindow::on_pushButton_6_clicked()
 {
-    QString username = ui->lineEditUserDel->text();
-    QString sudoPassword = ui->lineEditAdminPassForDel->text();
-    userManipulation userManipul;
-    userManipul.userDel(username,sudoPassword);
+    if (ui->checkBoxDelUser->isChecked()){
+        QString username = ui->lineEditUserDel->text();
+        QString sudoPassword = ui->lineEditAdminPassForDel->text();
+        userManipulation userManipul;
+        userManipul.userDel(username,sudoPassword);
 
-    ui->lineEditAdminPassForDel->clear();
-    ui->lineEditUserDel->clear();
+        ui->lineEditAdminPassForDel->clear();
+        ui->lineEditUserDel->clear();
+        ui->labelErrorDel->setText("User " + username + "deleted successfully");
+        delay(500);
+        ui->labelErrorDel->setText("");
+    }
+    else{
+        ui->labelErrorDel->setText("Confirm to proceed");
+    }
 }
 
 void MainWindow::on_pushButton_4_clicked()
@@ -587,5 +599,26 @@ void MainWindow::on_pushButton_4_clicked()
         delete ui->listWidget_3->takeItem(ui->listWidget_3->row(selectedItem));
     }
     saveAllProduction();
+}
+
+
+void MainWindow::on_pushButtonReturn_8_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+}
+
+
+void MainWindow::on_pushButtonClearAddUser_clicked()
+{
+    ui->lineEditAdminPassword->clear();
+    ui->lineEditLogin->clear();
+    ui->lineEditPassword->clear();
+}
+
+
+void MainWindow::on_pushButtonClearDelUser_clicked()
+{
+    ui->lineEditAdminPassForDel->clear();
+    ui->lineEditUserDel->clear();
 }
 
