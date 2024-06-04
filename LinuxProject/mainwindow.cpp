@@ -159,7 +159,7 @@ void MainWindow::loadAllProduction(){
     ui->listWidget_3->clear();
     for(const auto &product: data)
     {
-        QString itemText = QString("ID: %1\t Name of product: %2\t Quantity: %3\t Date Added: %4")
+        QString itemText = QString("ID: %1\t Quantity: %3\t Date Added: %4\t Product name: %2")
                                .arg(product.id)
                                .arg(productNames[product.id-1])
                                .arg(product.quantity)
