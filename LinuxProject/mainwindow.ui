@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1229</width>
+    <width>1271</width>
     <height>648</height>
    </rect>
   </property>
@@ -54,7 +54,7 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>8</number>
+       <number>7</number>
       </property>
       <widget class="QWidget" name="mainPage">
        <property name="styleSheet">
@@ -1913,6 +1913,10 @@ color: #D8DBE2;
 border-radius: 10px;
 padding: 70px 7px;
 font: bold 20px;
+}
+QPushButton:hover{
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
 }</string>
        </property>
        <layout class="QHBoxLayout" name="horizontalLayout_17">
@@ -2031,6 +2035,19 @@ QPushButton:hover{
            <layout class="QHBoxLayout" name="horizontalLayout_24">
             <item>
              <widget class="QPushButton" name="pushButtonReport_2">
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: #373F51;
+color: #D8DBE2;
+border-radius: 10px;
+padding: 70px 7px;
+font: bold 20px;
+}
+QPushButton:hover{
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}</string>
+              </property>
               <property name="text">
                <string>Check reports</string>
               </property>
@@ -2038,6 +2055,16 @@ QPushButton:hover{
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonReport_4">
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: #373F51;
+color: #D8DBE2;
+border-radius: 10px;
+padding: 70px 7px;
+font: bold 20px;
+}
+</string>
+              </property>
               <property name="text">
                <string>ADMIN</string>
               </property>
@@ -2045,6 +2072,19 @@ QPushButton:hover{
             </item>
             <item>
              <widget class="QPushButton" name="pushButtonToday_2">
+              <property name="styleSheet">
+               <string notr="true">QPushButton{
+background-color: #373F51;
+color: #D8DBE2;
+border-radius: 10px;
+padding: 70px 7px;
+font: bold 20px;
+}
+QPushButton:hover{
+	background-color: rgb(255, 255, 255);
+	color: rgb(0, 0, 0);
+}</string>
+              </property>
               <property name="text">
                <string>Check production</string>
               </property>
@@ -2618,6 +2658,16 @@ QPushButton:hover{
              </spacer>
             </item>
            </layout>
+          </item>
+          <item>
+           <widget class="QListWidget" name="listWidget_3"/>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_4">
+            <property name="text">
+             <string>Remove</string>
+            </property>
+           </widget>
           </item>
           <item>
            <spacer name="horizontalSpacer_44">

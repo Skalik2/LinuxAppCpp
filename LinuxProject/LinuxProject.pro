@@ -22,6 +22,8 @@ HEADERS += \
     mainwindow.h \
     misc.h \
     usermanipulation.h
+    productData.h \
+    productdata.h
 
 FORMS += \
     mainwindow.ui

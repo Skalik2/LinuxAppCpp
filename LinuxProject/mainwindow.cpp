@@ -2,14 +2,15 @@
 #include "ui_mainwindow.h"
 #include "misc.h"
 #include "filemanage.h"
+#include "productData.h"
 
 QVector<QString> productNames = {
     "Armored steel channel 40x10x120cm",
     "Steel profile H-type 30x20x120cm",
     "Steel closed square profile 30x30x120cm",
     "Steel pipe O-type 20x120cm",
-    "Steel rod O-type 1x200cm",
-    "Steel sheet 100x100x0.3cm",
+    "Steel rod O-type 1.50x200cm",
+    "Steel sheet 100x100x0.30cm",
     "Steel pipe triangle-type 6x40cm",
     "Steel pipe hexagon-type 2x20cm",
     "Steel pipe hexagon-type 5x40cm",
@@ -42,14 +43,13 @@ MainWindow::MainWindow(QWidget *parent)
     process.start("whoami");
     process.waitForFinished();
     QByteArray result = process.readAllStandardOutput();
-    if(true){//QString::fromUtf8(result).trimmed() == QStri ng("admin")){
+    /*if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
         ui->stackedWidget->setCurrentIndex(3);
         ui->labelUserNameAdmin->setText("Admin: " + QString::fromUtf8(result));
     }
-    else{
+    else*/{
         ui->stackedWidget->setCurrentIndex(0);
         ui->stackedWidget_2->setCurrentIndex(1);
-
         ui->labelUserName->setText("User: " + QString::fromUtf8(result));
     }
 
@@ -117,6 +117,7 @@ void MainWindow::loadReports(){
     }
 }
 
+
 void MainWindow::setProductionTable(){
     ui->tableWidget->clear();
     ui->tableWidget->setColumnCount(3);
@@ -146,9 +147,57 @@ void MainWindow::loadProduction(){
         ui->tableWidget->setItem(i, 2, new QTableWidgetItem(QString::number(0)));
     }
     for (int i = 0; i < production.size(); ++i){
-        ui->tableWidget->setItem(i-1, 2, new QTableWidgetItem(QString::number(production[i])));
+        ui->tableWidget->setItem(i, 2, new QTableWidgetItem(QString::number(production[i])));
     }
 }
+
+void MainWindow::loadAllProduction(){
+    FileManage f;
+    QVector<ProductData> data = f.getAllProduction('b');
+    // Odwrócenie kolejności elementów w wektorze
+    std::reverse(data.begin(), data.end());
+    ui->listWidget_3->clear();
+    for(const auto &product: data)
+    {
+        QString itemText = QString("ID: %1\t Name of product: %2\t Quantity: %3\t Date Added: %4")
+                               .arg(product.id)
+                               .arg(productNames[product.id-1])
+                               .arg(product.quantity)
+                               .arg(product.date.toString("dd.MM.yyyy-hh:mm:ss"));
+        qDebug() << itemText;
+        ui->listWidget_3->addItem(itemText);
+    }
+}
+
+void MainWindow::saveAllProduction()
+{
+    QFile file("baza.data");
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    QTextStream out(&file);
+    for (int i = ui->listWidget_3->count() - 1; i >= 0 ; i--) {
+        QListWidgetItem *item = ui->listWidget_3->item(i);
+        QString itemText = item->text();
+
+        QStringList parts = itemText.split("\t");
+        if (parts.size() >= 4) {
+            QString id = parts[0].split(": ")[1];
+            QString quantity = parts[2].split(": ")[1];
+            QString dateAdded = parts[3].split(": ")[1];
+            out << id << "\t" << quantity << "\t" << dateAdded;
+        }
+        if (i > 0) {
+            out << "\n";
+        }
+    }
+
+    file.close();
+    }
+    else {
+    qWarning() << "Cannot open file for writing:" << file.errorString();
+    return;
+    }
+}
+
 
 MainWindow::~MainWindow()
 {
@@ -483,6 +532,7 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_pushButtonToday_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(7);
+    loadAllProduction();
 }
 
 
@@ -528,5 +578,13 @@ void MainWindow::on_pushButton_6_clicked()
 
     ui->lineEditAdminPassForDel->clear();
     ui->lineEditUserDel->clear();
+
+void MainWindow::on_pushButton_4_clicked()
+{
+    QListWidgetItem *selectedItem = ui->listWidget_3->currentItem();
+    if (selectedItem) {
+        delete ui->listWidget_3->takeItem(ui->listWidget_3->row(selectedItem));
+    }
+    saveAllProduction();
 }
 
