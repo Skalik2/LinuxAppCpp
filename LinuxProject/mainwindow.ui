@@ -54,7 +54,7 @@
 </string>
       </property>
       <property name="currentIndex">
-       <number>7</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="mainPage">
        <property name="styleSheet">
@@ -264,7 +264,7 @@ background-color: none;
 }
 QSpinBox{
 background-color: none;
-color: #373F51;
+color: #ffffff;
 width: 26px;
 height: 26px;
 font: 18px;

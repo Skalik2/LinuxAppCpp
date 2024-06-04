@@ -8,7 +8,7 @@
 #include <QPair>
 #include <QDateTime>
 
-#include "productData.h"
+#include "productdata.h"
 
 class FileManage
 {

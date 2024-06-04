@@ -1,5 +1,5 @@
 #include "filemanage.h"
-#include "productData.h"
+#include "productdata.h"
 
 FileManage::FileManage() {}
 

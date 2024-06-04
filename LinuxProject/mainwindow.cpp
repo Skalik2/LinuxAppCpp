@@ -2,7 +2,7 @@
 #include "ui_mainwindow.h"
 #include "misc.h"
 #include "filemanage.h"
-#include "productData.h"
+#include "productdata.h"
 
 QVector<QString> productNames = {
     "Armored steel channel 40x10x120cm",
@@ -578,6 +578,7 @@ void MainWindow::on_pushButton_6_clicked()
 
     ui->lineEditAdminPassForDel->clear();
     ui->lineEditUserDel->clear();
+}
 
 void MainWindow::on_pushButton_4_clicked()
 {
