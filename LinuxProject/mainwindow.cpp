@@ -42,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent)
     process.start("whoami");
     process.waitForFinished();
     QByteArray result = process.readAllStandardOutput();
-    if(true){//QString::fromUtf8(result).trimmed() == QString("admin")){
+    if(true){//QString::fromUtf8(result).trimmed() == QStri ng("admin")){
         ui->stackedWidget->setCurrentIndex(3);
         ui->labelUserNameAdmin->setText("Admin: " + QString::fromUtf8(result));
     }
@@ -471,10 +471,12 @@ void MainWindow::on_pushButtonReturn_5_clicked()
 void MainWindow::on_pushButton_3_clicked()
 {
     QListWidgetItem *selectedItem = ui->listWidget_2->currentItem();
-    FileManage f;
-    QStringList parts = selectedItem->text().split('\n');
-    f.removeFromFile(parts[2],parts[4],'r');
-    loadReports();
+    if (selectedItem){
+        FileManage f;
+        QStringList parts = selectedItem->text().split('\n');
+        f.removeFromFile(parts[1],parts[3],'r');
+        loadReports();
+    }
 }
 
 
@@ -493,5 +495,38 @@ void MainWindow::on_pushButtonReturn_6_clicked()
 void MainWindow::on_pushButtonReturn_7_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+}
+
+
+void MainWindow::on_pushButtonReport_4_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(8);
+}
+
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    QString username = ui->lineEditLogin->text();
+    QString password = ui->lineEditPassword->text();
+    QString sudoPassword = ui->lineEditAdminPassword->text();
+
+    userManipulation userManipul;
+    userManipul.addUser(username, sudoPassword);
+    userManipul.addPassword(username, password);
+
+    ui->lineEditAdminPassword->clear();
+    ui->lineEditLogin->clear();
+    ui->lineEditPassword->clear();
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    QString username = ui->lineEditUserDel->text();
+    QString sudoPassword = ui->lineEditAdminPassForDel->text();
+    userManipulation userManipul;
+    userManipul.userDel(username,sudoPassword);
+
+    ui->lineEditAdminPassForDel->clear();
+    ui->lineEditUserDel->clear();
 }
 

@@ -60,7 +60,6 @@ void FileManage::removeFromFile(const QString &reportDescription, QString &repor
             if(parts.size() == 2){
                 QString description = parts[0];
                 QString date = parts[1];
-                qDebug() << "Test z metody: " << parts[0]  << " " << parts[1];
                 if(description !=  reportDescription || date != reportDate)
                 {
                     reportData.append(qMakePair(description,date));

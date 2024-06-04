@@ -3,6 +3,8 @@
 
 #include "qlabel.h"
 #include "qlistwidget.h"
+#include "usermanipulation.h"
+
 #include <QMainWindow>
 #include <QCloseEvent>
 #include <QDir>
@@ -70,5 +72,8 @@ private slots:
     void on_pushButtonToday_2_clicked();
     void on_pushButtonReturn_6_clicked();
     void on_pushButtonReturn_7_clicked();
+    void on_pushButtonReport_4_clicked();
+    void on_pushButton_5_clicked();
+    void on_pushButton_6_clicked();
 };
 #endif // MAINWINDOW_H

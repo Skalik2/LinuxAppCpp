@@ -13,13 +13,15 @@ SOURCES += \
     filemanage.cpp \
     main.cpp \
     mainwindow.cpp \
-    misc.cpp
+    misc.cpp \
+    usermanipulation.cpp
 
 HEADERS += \
     closehandler.h \
     filemanage.h \
     mainwindow.h \
-    misc.h
+    misc.h \
+    usermanipulation.h
 
 FORMS += \
     mainwindow.ui
